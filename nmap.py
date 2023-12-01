@@ -56,9 +56,9 @@ if __name__ == "__main__":
 
     available_ports_for_target_host = Host_Scanner.scan_range_of_input_ports()
     if len(available_ports_for_target_host) != 0:
-        print(f"open port detected: {host}   ")
+        #print(f"open port detected: {host}   ")
         for port in available_ports_for_target_host:
-            print(f"--port:{port}     -- service: {Scanner.get_service_port(port)}")
+            print(f"open port detected: {host}    --port:{port}     -- service: {Scanner.get_service_port(port)}")
 
     else:
         print("There is no open port detected in range you provide")
