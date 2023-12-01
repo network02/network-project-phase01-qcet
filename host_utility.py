@@ -22,7 +22,7 @@ class Scanner:
                 pass
             finally:
                 host_socket_checker_online.close()
-            if 3 <= INT_MAX_ITER: # for saying, it is offline , for simplicity
+            if 5 <= INT_MAX_ITER: # for saying, it is offline , for simplicity
                 break
 
 
