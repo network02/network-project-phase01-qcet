@@ -6,7 +6,7 @@ from host_utility import *
 
 
 def singing_ports_list():
-    high_priority_ports = WellKnownPorts([
+    high_priority_ports = Well_Known_Ports([
         Port_object_entity(80),
         Port_object_entity(443),
         Port_object_entity(22),
@@ -18,7 +18,7 @@ def singing_ports_list():
         Port_object_entity(8443),
     ])
 
-    medium_priority_ports = WellKnownPorts([
+    medium_priority_ports = Well_Known_Ports([
         Port_object_entity(53),
         Port_object_entity(110),
         Port_object_entity(143),
