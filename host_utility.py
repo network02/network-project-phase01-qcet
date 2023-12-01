@@ -52,23 +52,22 @@ class Scanner:
         return self.check_ports_for_least_popular_ports(low_priority_ports)  # No successful connection on any port, host is offline
 
     @staticmethod
-    def get_service_port(port):
+    def get_service_port(port): # kind of utility function
         try:
             service  = socket.getservbyport(port)
             return service
         except socket.error:
-            return "Unknown"
+            return "Unknown!!!"
 
 
 
     def scan_range_of_input_ports(self):
-        available_ports = list
-        iteration = self.ending_port - self.starting_port + 1
-        for port_number in range (iteration):
+        available_ports = []
+        for port_number in range (self.starting_port, self.ending_port +1):
             port_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            port_socket.settimeout(1.75) # Avoiding Delays
+            port_socket.settimeout(2) # Avoiding Delays
             if port_socket.connect_ex((self.host, port_number)) == 0 :
                 available_ports.append(port_number)
             port_socket.close()
-            
+
         return available_ports
