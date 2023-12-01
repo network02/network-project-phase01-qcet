@@ -1,8 +1,9 @@
 import sys
+from typing import Type
+
 from defined_ports import *
 from port_object import *
 from host_utility import *
-
 
 
 def singing_ports_list():
@@ -36,20 +37,28 @@ def singing_ports_list():
     return high_priority_ports, medium_priority_ports
 
 
-
-
-
 if __name__ == "__main__":
-    if len(sys.argv) < 2:
+    if len(sys.argv) < 4:
         print("Usage: python nmap.py <host>")
         sys.exit(1)
 
     host = sys.argv[1]
+    initial_port = int(sys.argv[2])  # it is string , converting to integer
+    final_port = int(sys.argv[3])
 
     # Define lists of well-known ports, arranged by their priorities
     port_tuple = singing_ports_list()
-    Host_Scanner = Scanner(host, port_tuple)
+    Host_Scanner = Scanner(host, port_tuple, initial_port, final_port)
     if Host_Scanner.check_ports_for_two_first_level_ports():
         print(f"{host} is online")
     else:
         print(f"{host} is offline")
+
+    available_ports_for_target_host = Host_Scanner.scan_range_of_input_ports()
+    if len(available_ports_for_target_host) != 0:
+        print(f"open port detected: {host}   ")
+        for port in available_ports_for_target_host:
+            print(f"--port:{port}     -- service: {Scanner.get_service_port(port)}")
+
+    else:
+        print("There is no open port detected in range you provide")
