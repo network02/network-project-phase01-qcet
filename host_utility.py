@@ -63,9 +63,9 @@ class Scanner:
 
     def scan_range_of_input_ports(self):
         available_ports = []
-        for port_number in range (self.starting_port, self.ending_port +1):
+        for port_number in range (self.starting_port, self.ending_port + 1):
             port_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            port_socket.settimeout(2) # Avoiding Delays
+            port_socket.settimeout(1.75) # Avoiding trapping into Delays
             if port_socket.connect_ex((self.host, port_number)) == 0 :
                 available_ports.append(port_number)
             port_socket.close()
