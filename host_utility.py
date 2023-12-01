@@ -2,9 +2,11 @@ import socket
 
 
 class Scanner:
-    def __init__(self, host, list_of_scanner_port):
+    def __init__(self, host, list_of_scanner_port, initial_port, final_port):
         self.host = host
         self.priority_port_list = list_of_scanner_port
+        self.starting_port = initial_port
+        self.ending_port = final_port
 
 
     def check_ports_for_least_popular_ports(self, port_list):
@@ -46,5 +48,27 @@ class Scanner:
                     host_socket_checker_online.close()
 
         low_priority_ports = range(1024, 49151)
-        self.check_ports_for_least_popular_ports(low_priority_ports)
-        return False  # No successful connection on any port, host is offline
+
+        return self.check_ports_for_least_popular_ports(low_priority_ports)  # No successful connection on any port, host is offline
+
+    @staticmethod
+    def get_service_port(port):
+        try:
+            service  = socket.getservbyport(port)
+            return service
+        except socket.error:
+            return "Unknown"
+
+
+
+    def scan_range_of_input_ports(self):
+        available_ports = list
+        iteration = self.ending_port - self.starting_port + 1
+        for port_number in range (iteration):
+            port_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            port_socket.settimeout(1.75) # Avoiding Delays
+            if port_socket.connect_ex((self.host, port_number)) == 0 :
+                available_ports.append(port_number)
+            port_socket.close()
+            
+        return available_ports
