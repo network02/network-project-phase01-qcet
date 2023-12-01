@@ -82,7 +82,7 @@ if __name__ == "__main__":
     # Define lists of well-known ports, arranged by their priorities
     port_tuple = singing_ports_list()
 
-    if not check_ports_for_two_first_level_ports(host, port_tuple):
-        print(f"{host} is offline")
-    else:
+    if  check_ports_for_two_first_level_ports(host, port_tuple):
         print(f"{host} is online")
+    else:
+        print(f"{host} is offline")
