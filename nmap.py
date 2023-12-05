@@ -1,10 +1,9 @@
 import sys
-from typing import Type
 
 from defined_ports import *
 from port_object import *
 from host_utility import *
-
+from local_client import *
 
 def singing_ports_list():
     high_priority_ports = Well_Known_Ports([
@@ -62,3 +61,15 @@ if __name__ == "__main__":
 
     else:
         print("There is no open port detected in range you provide")
+
+
+while True:
+    print ("Enter 'GET user_id' or 'POS user_name user_age' to simulate a request: ")
+    print ("Enter Zero to quit:")
+    request = input()
+    if request == 0:
+        sys.exit(1)
+    else:
+        client_request = Client_connection()
+        client_request.intilize_connection_to_server(request)
+
