@@ -1,4 +1,4 @@
-import  socket
+import socket
 
 class Client_connection:
     def __init__(self):
