@@ -11,8 +11,11 @@ def singing_ports_list():
         Port_object_entity(80),
         Port_object_entity(443),
         Port_object_entity(22),
+        Port_object_entity(20),
         Port_object_entity(21),
         Port_object_entity(25),
+        Port_object_entity(53),
+        Port_object_entity(123),
         Port_object_entity(3389),
         Port_object_entity(1433),
         Port_object_entity(8080),
@@ -20,7 +23,6 @@ def singing_ports_list():
     ])
 
     medium_priority_ports = Well_Known_Ports([
-        Port_object_entity(53),
         Port_object_entity(110),
         Port_object_entity(143),
         Port_object_entity(3306),
