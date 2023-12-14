@@ -53,7 +53,7 @@ def port_Scanner(host, initial_port, final_port):
             print(f"open port detected: {host}    --port:{port}     -- service: {Scanner.get_service_port(port)}")
 
     else:
-        print("There is no open port detected in range you provide")
+        print("There is no open port detected in range you provided")
 
     return
 
@@ -88,17 +88,24 @@ def initialize_program(scan_flag = False):
         while True:
             os.system("cls")
             print("please enter the the IP **NOTE DO NOT USE PYTHON AT FIRST**")
+            print ("0.Exit")
             received_input = input()
-            received_input_split = received_input.split()
-            host = received_input_split[0]
-            initial_port = int(received_input_split[1])
-            final_port = int(received_input_split[2])
-            port_Scanner(host, initial_port, final_port)
-            user_choice = input("To Scan again press 0 otherwise 1 :")
-            if user_choice == '0':
-                pass
+            if received_input == '0':
+                break;
             else:
-                break
+                received_input_split = received_input.split()
+                if len(received_input_split) < 3 :
+                    input("Bad request. Press Enter to try again")
+                else :
+                    host = received_input_split[0]
+                    initial_port = int(received_input_split[1])
+                    final_port = int(received_input_split[2])
+                    port_Scanner(host, initial_port, final_port)
+                    user_choice = input("To Scan again press 0 otherwise 1 :")
+                    if user_choice == '0':
+                        pass
+                    else:
+                        break
     else:
         GET_POST_METHOD()
 
